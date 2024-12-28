@@ -13,7 +13,7 @@ This Bash script exports all **text files** tracked by Git into a single `.txt` 
 ## Installation & Usage
 
 ### Option 1: Run via cURL (Primary & Quick)
-Just run the following command in the terminal for your project directory:
+Just run the following command in the terminal for your project:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/utsmannn/srctot/main/srctot.sh)"

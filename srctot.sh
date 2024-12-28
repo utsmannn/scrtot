@@ -28,20 +28,16 @@ while IFS= read -r file; do
   if [[ "$file" =~ (^\.|/\.) ]]; then
     continue
   fi
-
-  mime_type=$(file --mime-type -b "$file")
-  if [[ "$mime_type" =~ ^text/ ]]; then
-    files_to_process+=("$file")
-  fi
+  files_to_process+=("$file")
 done < <(git ls-files)
 
 num_files=${#files_to_process[@]}
 if [[ $num_files -eq 0 ]]; then
-  echo "No text files found. Process aborted."
+  echo "No files found. Process aborted."
   exit 0
 fi
 
-echo "Found $num_files text file(s) to process."
+echo "Found $num_files file(s) to process."
 echo ""
 
 i=0
@@ -53,13 +49,19 @@ for file in "${files_to_process[@]}"; do
 
   filename=$(basename "$file")
   path="$file"
+  mime_type=$(file --mime-type -b "$file")
 
   echo "=====================" >> "$OUTPUT_FILE"
   echo "$filename" >> "$OUTPUT_FILE"
   echo "$path" >> "$OUTPUT_FILE"
   echo "=====================" >> "$OUTPUT_FILE"
 
-  cat "$file" >> "$OUTPUT_FILE"
+  if [[ "$mime_type" =~ ^text/ ]]; then
+    cat "$file" >> "$OUTPUT_FILE"
+  else
+    echo "" >> "$OUTPUT_FILE"
+    echo "\"$filename\" is not a text file (MIME type: $mime_type)" >> "$OUTPUT_FILE"
+  fi
 
   echo "" >> "$OUTPUT_FILE"
   echo "=====================" >> "$OUTPUT_FILE"
