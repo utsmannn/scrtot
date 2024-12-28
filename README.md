@@ -130,6 +130,34 @@ Helps when generating embeddings or performing document-level transformations, a
 - If you must run via cURL or `wget`, **double-check** the URL to ensure it points to your intended script, and consider validating checksums or signatures if available.  
 - If distributing this script in a team environment, provide a **trusted, versioned** repository so team members can review changes.
 
+## Parser Script (if needed)
+
+If you want to **reconstruct** text files back into directories from the `.txt` file produced by this script, you can use an additional **parser script**. It reads each file’s metadata and contents from the generated `.txt` and recreates the corresponding directory structure on your system.
+
+### Installation & Usage
+
+1. **Clone or Download** the parser script (`parser.sh`) into any folder on your machine.  
+2. **Make it executable**:
+   
+```bash
+chmod +x parser.sh
+```
+   
+4. **Run**:
+   
+```bash
+./parser.sh <exported_txt_file>
+```
+   
+   - Replace `<exported_txt_file>` with the actual `.txt` file (e.g., `my_project.txt`) you previously generated.  
+   - The script will reconstruct all text files inside a folder named `restored_source_code`.
+
+### How It Works
+1. **Reads** each section in the `.txt` file, marked by the separator line.  
+2. **Extracts** file metadata (filename, path) and the content of each file.  
+3. **Creates** the appropriate directory structure and writes the file contents.  
+4. **Logs** any files that were deemed non-text and displays them at the end.
+
 ## Contributing
 Feel free to **fork** this project, open issues, or submit pull requests to improve features or compatibility. For major changes, please open a discussion first to align on the approach.
 
