@@ -22,17 +22,17 @@ Just run the following command in the terminal for your project:
 The script will create a file named `<folder_name>.txt`, where `<folder_name>` is your current directory name in lowercase with spaces replaced by underscores.
 
 ### Option 2: Manual Download (Alternative)
-1. **Clone or Download** this script (e.g., `export_code.sh`) into the root of your Git project.
+1. **Clone or Download** this script (e.g., `srctot.sh`) into the root of your Git project.
 2. **Make it executable**:
    
 ```bash
-chmod +x export_code.sh
+chmod +x scrtot.sh
 ```
    
 4. **Run**:
    
 ```bash
-./export_code.sh
+./srctot.sh
 ```
 
 
